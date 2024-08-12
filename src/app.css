@@ -1,0 +1,21 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.page_cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.page_form{
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+main{
+    display: flex;
+    justify-content: center;
+}
