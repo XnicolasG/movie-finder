@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: 800px;
 }
 .page_cont{
     display: flex;
@@ -18,4 +20,16 @@
 main{
     display: flex;
     justify-content: center;
+    width: 100%;
+}
+.movies{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    list-style: none;
+    gap: 20px;
+    text-align: center;
+}
+.movies img{
+    border-radius: 10px;
 }

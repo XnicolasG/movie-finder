@@ -6,12 +6,13 @@ import { useSearch } from './Hooks/useSearch';
 
 
 export const App = () => {
-    const { movies } = useMovies();
     const {search, setSearch, error} = useSearch()
+    const { movies, getMovies } = useMovies({search});
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(search);
+        getMovies()
     }
 
    const handleChange =(e)=>{
@@ -25,7 +26,7 @@ export const App = () => {
             <header className='page_cont'>
                 <h1 className='page_title'>Movie Finder</h1>
                 <form className="page_form" onSubmit={handleSubmit}>
-                    <input onChange={handleChange} value={search} name='inputField' type="text" placeholder='Harry Potter, Matrix, etc..' />
+                    <input onChange={handleChange} value={search}  type="text" placeholder='Harry Potter, Matrix, etc..' />
                     <button>Buscar</button>
                 </form>
                 {error && <p>{error}</p>}
