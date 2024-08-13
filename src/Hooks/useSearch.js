@@ -19,6 +19,7 @@ export const useSearch = () => {
           setError('No se puede buscar una pelicual con un numero')
           return
       };
+      setError(null)
     }, [search])
       return {search, setSearch, error}
   }
