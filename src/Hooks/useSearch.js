@@ -11,6 +11,7 @@ export const useSearch = () => {
         isFirstInput.current = search === '' 
         return
       };
+
       if (search === '') {
           setError('No se puede buscar una pelicula sin nombre')
           return

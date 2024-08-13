@@ -4,7 +4,7 @@ const WithMovies = ({ movies }) => {
     return (
         <ul className="movies">
             {
-                movies.map((movie) => (
+                movies?.map((movie) => (
                     <li key={movie.id}>
                         <h3>{movie.title}</h3>
                         <img src={movie.img} alt={movie.Title} />

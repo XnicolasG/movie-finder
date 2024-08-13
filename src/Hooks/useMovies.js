@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { getSearchMovies } from '../services/getMovies';
 
 export const useMovies = ({ search, sort }) => {
@@ -7,32 +7,30 @@ export const useMovies = ({ search, sort }) => {
     const [error, setError] = useState(null)
     const previousSearch = useRef(search)
 
-    const getMovies = useMemo(() => {
-        console.log('getmovies');
+    const getMovies = useCallback(async ({ search }) => {
+        if (search === previousSearch.current) return
+        try {
+            console.log(search);
 
-        return async ({ search }) => {
-            if (search === previousSearch.current) return
-            try {
-                console.log(search);
-                
-                setLoading(true)
-                setError(null)
-                previousSearch.current = search
-                const newMovies = await getSearchMovies({ search })
-                setMovies(newMovies)
-            } catch (error) {
-                setError(error.message)
-            } finally {
-                setLoading(false)
-            }
+            setLoading(true)
+            setError(null)
+            previousSearch.current = search
+            const newMovies = await getSearchMovies({ search })
+            setMovies(newMovies)
+        } catch (error) {
+            setError(error.message)
+        } finally {
+            setLoading(false)
         }
     }, [])
 
     const sortedMovies = useMemo(() => {
-        console.log('memo');
+        console.log(movies);
+        
+        if (!movies) return;
         return sort
-            ? [...movies].sort((a, b) => a.year.localeCompare(b.year))
-            : [...movies].sort((a, b) => b.year.localeCompare(a.year))
+        ? [...movies].sort((a, b) => a.year - b.year)
+        : [...movies].sort((a, b) => b.year - a.year);
     }, [sort, movies])
 
     return {
